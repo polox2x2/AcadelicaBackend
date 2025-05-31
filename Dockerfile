@@ -1,17 +1,24 @@
-#Imagen oficial Del JDK17
+# Etapa 1: Construcción del JAR con Maven
+FROM maven:3.9.5-eclipse-temurin-17 as build
+
+WORKDIR /app
+
+# Copiar el contenido del proyecto
+COPY . .
+
+# Construir el proyecto y generar el JAR
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Imagen ligera con solo el JDK
 FROM openjdk:17-jdk-slim
 
-#Establece el directorio
+WORKDIR /app
 
-WORKDIR / app
+# Copiar el JAR desde la etapa anterior
+COPY --from=build /app/target/*.jar app.jar
 
-#Copia el JAR Compilado al contenedor
-COPY target/proyecto-0.0.1-SNAPSHOT.jar app.jar
-
-#Expone el puerto  de la aplicacion
+# Exponer el puerto
 EXPOSE 8080
 
-#EJECUTAR LA APLICACION SPRING BOOT
-ENTRYPOINT ["java","-jar","app.jar"]
-
-
+# Ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "app.jar"]
