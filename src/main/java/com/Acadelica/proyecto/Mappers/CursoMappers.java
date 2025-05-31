@@ -3,6 +3,7 @@ package com.Acadelica.proyecto.Mappers;
 import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
+import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.Model.Curso;
 
 import java.util.List;
@@ -11,11 +12,12 @@ import java.util.stream.Collectors;
 public class CursoMappers {
 
 
-    public static Curso mapToCurso(CursoCreateDTO createDTO){
+    public static Curso mapToCurso(CursoCreateDTO createDTO, Categoria categoria){
         Curso curso = new Curso();
         curso.setNombreCurso(createDTO.getNombre());
         curso.setDescripcion(createDTO.getDescripcion());
         curso.setDuracion(createDTO.getDuracion());
+        curso.setCategoria(categoria);
         return curso;
     }
 

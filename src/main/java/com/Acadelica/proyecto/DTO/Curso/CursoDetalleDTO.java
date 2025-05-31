@@ -1,10 +1,7 @@
 package com.Acadelica.proyecto.DTO.Curso;
 
 
-import com.Acadelica.proyecto.Model.Actividad;
-import com.Acadelica.proyecto.Model.AlumnoCurso;
-import com.Acadelica.proyecto.Model.Categoria;
-import com.Acadelica.proyecto.Model.Horario;
+import com.Acadelica.proyecto.Model.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +19,7 @@ public class CursoDetalleDTO {
     public String descripcion;
     public Integer duracion;
     private Categoria categoria;
+    private Profesor profesor;
     private List<Horario> horarios;
     private List<Actividad>actividades;
     private List<AlumnoCurso>alumnos;

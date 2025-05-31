@@ -21,6 +21,9 @@ public class CursoCreateDTO {
     @NotNull
     private Integer duracion ;
 
+    @NotNull(message = "Debe seleccionar una categoría")
+    private Long idCategoria;
+
 
 
 

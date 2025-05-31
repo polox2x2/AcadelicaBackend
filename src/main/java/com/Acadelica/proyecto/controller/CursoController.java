@@ -28,10 +28,10 @@ public class CursoController {
     //CRUD por DTO
 
     @PostMapping("/crear")
-    public ResponseEntity<CursoResponseDTO> crearCurso (CursoCreateDTO dto){
+    public ResponseEntity<CursoResponseDTO> crearCurso (@RequestBody  CursoCreateDTO dto){
         return ResponseEntity.ok(cursoService.crearCurso(dto));
     }
-    @PostMapping("/obtener")
+    @GetMapping("/obtener")
     public ResponseEntity<List<CursoDetalleDTO>>obtenerCursos(){
         List<Curso>cursos = cursoService.buscarCurso();
         List<CursoDetalleDTO>detalleDTOS = CursoMappers.mapToList(cursos);

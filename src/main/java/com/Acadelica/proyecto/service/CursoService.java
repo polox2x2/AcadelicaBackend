@@ -4,20 +4,22 @@ import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
 import com.Acadelica.proyecto.Mappers.CursoMappers;
+import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.Model.Curso;
+import com.Acadelica.proyecto.repository.CategoriaRepository;
 import com.Acadelica.proyecto.repository.CursoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CursoService {
 
     private final CursoRepository cursoRepository;
+    private final CategoriaRepository categoriaRepository;
 
-    public CursoService (CursoRepository cursoRepository){
-        this.cursoRepository = cursoRepository;
-    }
 
     public List<Curso> buscarCurso(){
         return cursoRepository.findAll();
@@ -29,10 +31,15 @@ public class CursoService {
 
     //Crear Curso DTO
     public CursoResponseDTO crearCurso(CursoCreateDTO createDTO){
-            Curso curso = CursoMappers.mapToCurso(createDTO);
+
+        Categoria categoria = categoriaRepository.findById(createDTO.getIdCategoria()).orElseThrow(
+                () -> new RuntimeException("Categoria no encontrada"));
+            Curso curso = CursoMappers.mapToCurso(createDTO ,categoria);
             Curso create = cursoRepository.save(curso);
             return CursoMappers.mapToResponseDTO(create);
     }
+
+
     //lista detallada de curso DTO
     public List<CursoDetalleDTO> cursoDetalleDTO(List<Curso>cursos){
         return CursoMappers.mapToList(cursos);
