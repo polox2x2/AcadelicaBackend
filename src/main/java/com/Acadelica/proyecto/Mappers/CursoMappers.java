@@ -21,7 +21,6 @@ public class CursoMappers {
 
     public static CursoResponseDTO mapToResponseDTO (Curso curso){
         CursoResponseDTO responseDTO = new CursoResponseDTO();
-            responseDTO.setId(curso.getId());
             responseDTO.setNombre(curso.getNombreCurso());
             responseDTO.setDescripcion(curso.getDescripcion());
             responseDTO.setDuracion(curso.getDuracion());

@@ -15,8 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CursoResponseDTO {
-    @NotNull
-    private Long id ;
+
     @NotNull
     private String nombre ;
     @NotNull
