@@ -34,6 +34,7 @@ public class CursoMappers {
         dto.setNombre(curso.getNombreCurso());
         dto.setDescripcion(curso.getDescripcion());
         dto.setDuracion(curso.getDuracion());
+        dto.setCateogoria(curso.getCateogoria());
         dto.setAlumnos(curso.getAlumnos());
         dto.setActividades(curso.getActividades());
         dto.setHorarios(curso.getHorarios());
@@ -43,13 +44,15 @@ public class CursoMappers {
     public static List<CursoDetalleDTO> mapToList(List<Curso>cursos){
         return cursos.stream().map(
                 CursoMappers::mapToCursoDetalleDTO).collect(
-                        Collectors.toList());
+                            Collectors.toList());
     }
 
-        public static void upDateCurso(Curso curso, CursoResponseDTO responseDTO){
-            curso.setNombreCurso(responseDTO.getNombre());
-            curso.setCateogoria(responseDTO.getCateogoria());
-            curso.setDuracion(responseDTO.getDuracion());
-            curso.setDescripcion(responseDTO.getDescripcion());
+        public static void upDateCurso(Curso curso, CursoDetalleDTO dto){
+            curso.setNombreCurso(dto.getNombre());
+            curso.setCateogoria(dto.getCateogoria());
+            curso.setDuracion(dto.getDuracion());
+            curso.setDescripcion(dto.getDescripcion());
         }
+
+
 }

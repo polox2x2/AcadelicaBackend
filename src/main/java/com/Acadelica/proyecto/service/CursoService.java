@@ -44,12 +44,16 @@ public class CursoService {
         return CursoMappers.mapToCursoDetalleDTO(curso);
     }
     //Actualizar Curso DTO
-    public Curso upDateCurso(Long id, CursoResponseDTO responseDTO){
+    public Curso upDateCurso(Long id, CursoDetalleDTO detalleDTO){
         Curso curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Curso no Encontrado"));
-        CursoMappers.upDateCurso(curso,responseDTO);
+        CursoMappers.upDateCurso(curso,detalleDTO);
         return cursoRepository.save(curso);
     }
-
+    public void deleteCurso(Long id){
+        Curso curso = cursoRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("No se encontro el curso"));
+        cursoRepository.delete(curso);
+    }
 
 }
