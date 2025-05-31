@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
 public class CategoriaMappers {
 
 
-    public Categoria mapToCategoria(CategoriaCreateDTO dto){
+    public static Categoria mapToCategoria(CategoriaCreateDTO dto){
         Categoria categoria = new Categoria();
-
         categoria.setNombre(dto.getNombre());
         categoria.setFechaCreacion(LocalDateTime.now());
         return categoria;

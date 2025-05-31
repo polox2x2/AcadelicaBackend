@@ -10,7 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HorarioCreateDTO {
 
-
-
-
+    private Long id;
 }

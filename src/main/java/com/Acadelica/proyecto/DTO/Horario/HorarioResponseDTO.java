@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HorarioResponseDTO {
 
+    private String dia;
 
+
+    private String horaInicio;
+
+
+    private String horaFin;
 
 }

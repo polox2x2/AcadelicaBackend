@@ -1,5 +1,6 @@
 package com.Acadelica.proyecto.controller;
 
+import com.Acadelica.proyecto.DTO.Categoria.CategoriaCreateDTO;
 import com.Acadelica.proyecto.DTO.Categoria.CategoriaResponseDTO;
 import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.service.CategoriaService;
@@ -21,6 +22,12 @@ public class CategoriaController {
     public ResponseEntity<List<Categoria>> listarCategorias() {
         List<Categoria> categorias = categoriaService.listarCategoria();
         return ResponseEntity.ok(categorias);
+    }
+
+    @PostMapping("/crear")
+    public ResponseEntity<CategoriaResponseDTO>crearCategoria (@RequestBody CategoriaCreateDTO dto){
+        CategoriaResponseDTO responseDTO = categoriaService.crearCategoria(dto);
+        return ResponseEntity.status(201).body(responseDTO);
     }
 
     // 2. Listar todas las categorías con DTO }
