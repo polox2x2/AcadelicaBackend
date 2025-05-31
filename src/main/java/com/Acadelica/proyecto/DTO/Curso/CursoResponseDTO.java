@@ -3,7 +3,7 @@ package com.Acadelica.proyecto.DTO.Curso;
 
 import com.Acadelica.proyecto.Model.Actividad;
 import com.Acadelica.proyecto.Model.AlumnoCurso;
-import com.Acadelica.proyecto.Model.Cateogoria;
+import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.Model.Horario;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class CursoResponseDTO {
     @NotNull
     private Integer Duracion ;
 
-    private Cateogoria cateogoria;
+    private Categoria categoria;
 
     private List<Horario>horarios;
     private List<Actividad>actividad;

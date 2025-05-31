@@ -5,15 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table (name = "categorias")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cateogoria {
+public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Categoria")
@@ -23,6 +23,6 @@ public class Cateogoria {
     private String nombre;
 
     @Column(name = "Fecha_Creacion")
-    private Date fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
 }

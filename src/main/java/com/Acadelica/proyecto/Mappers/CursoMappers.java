@@ -22,7 +22,7 @@ public class CursoMappers {
     public static CursoResponseDTO mapToResponseDTO (Curso curso){
         CursoResponseDTO responseDTO = new CursoResponseDTO();
             responseDTO.setNombre(curso.getNombreCurso());
-            responseDTO.setCateogoria(curso.getCateogoria());
+            responseDTO.setCategoria(curso.getCategoria());
             responseDTO.setDescripcion(curso.getDescripcion());
             responseDTO.setDuracion(curso.getDuracion());
 
@@ -34,7 +34,7 @@ public class CursoMappers {
         dto.setNombre(curso.getNombreCurso());
         dto.setDescripcion(curso.getDescripcion());
         dto.setDuracion(curso.getDuracion());
-        dto.setCateogoria(curso.getCateogoria());
+        dto.setCategoria(curso.getCategoria());
         dto.setAlumnos(curso.getAlumnos());
         dto.setActividades(curso.getActividades());
         dto.setHorarios(curso.getHorarios());
@@ -49,7 +49,7 @@ public class CursoMappers {
 
         public static void upDateCurso(Curso curso, CursoDetalleDTO dto){
             curso.setNombreCurso(dto.getNombre());
-            curso.setCateogoria(dto.getCateogoria());
+            curso.setCategoria(dto.getCategoria());
             curso.setDuracion(dto.getDuracion());
             curso.setDescripcion(dto.getDescripcion());
         }

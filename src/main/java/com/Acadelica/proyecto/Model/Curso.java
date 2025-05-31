@@ -32,7 +32,7 @@ public class Curso {
 
     @ManyToOne  // Relación muchos a uno con Categoria
     @JoinColumn(name = "id_categoria")  // FK de la tabla Categoria
-    private Cateogoria cateogoria;  // La relación con Categoria
+    private Categoria categoria;  // La relación con Categoria
 
     @OneToMany(mappedBy = "curso",cascade = CascadeType.ALL)
     private List<Horario>horarios;
