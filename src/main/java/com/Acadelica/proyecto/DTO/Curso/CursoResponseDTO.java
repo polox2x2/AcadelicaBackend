@@ -1,6 +1,7 @@
 package com.Acadelica.proyecto.DTO.Curso;
 
 
+import com.Acadelica.proyecto.DTO.Categoria.CategoriaDTO;
 import com.Acadelica.proyecto.Model.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,7 @@ public class CursoResponseDTO {
     private String Descripcion ;
     @NotNull
     private Integer Duracion ;
-
-    private Categoria categoria;
+    private CategoriaDTO categoriaDTO;
     private Profesor profesor;
     private List<Horario>horarios;
     private List<Actividad>actividad;

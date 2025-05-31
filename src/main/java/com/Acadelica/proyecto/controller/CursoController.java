@@ -31,11 +31,17 @@ public class CursoController {
     public ResponseEntity<CursoResponseDTO> crearCurso (@RequestBody  CursoCreateDTO dto){
         return ResponseEntity.ok(cursoService.crearCurso(dto));
     }
-    @GetMapping("/obtener")
+    @GetMapping("/lista")
     public ResponseEntity<List<CursoDetalleDTO>>obtenerCursos(){
         List<Curso>cursos = cursoService.buscarCurso();
         List<CursoDetalleDTO>detalleDTOS = CursoMappers.mapToList(cursos);
         return ResponseEntity.ok(detalleDTOS);
+    }
+    @GetMapping("/obtener")
+    public ResponseEntity<List<CursoResponseDTO>>obtenerCursoResponse(){
+        List<Curso>cursos = cursoService.buscarCurso();
+        List<CursoResponseDTO>responseDTOS =CursoMappers.mapToListResponse(cursos);
+        return ResponseEntity.ok(responseDTOS);
     }
     @GetMapping("/{id}")
     public ResponseEntity<CursoDetalleDTO>obtenetPorId (@PathVariable Long id){

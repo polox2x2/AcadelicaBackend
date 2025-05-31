@@ -50,6 +50,11 @@ public class CursoService {
                 orElseThrow(() -> new RuntimeException("No se encontro El curso"));
         return CursoMappers.mapToCursoDetalleDTO(curso);
     }
+    public List<CursoResponseDTO>cursoResponseDTO(List<Curso>cursos){
+        return CursoMappers.mapToListResponse(cursos);
+    }
+
+
     //Actualizar Curso DTO
     public Curso upDateCurso(Long id, CursoDetalleDTO detalleDTO){
         Curso curso = cursoRepository.findById(id)
