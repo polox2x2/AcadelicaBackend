@@ -44,6 +44,7 @@ public class AlumnoService {
 
 
     }
+    //obtener por ID
     public AlumnoDetalleDTO listarAlumnoPorId(Long id) {
         Alumno alumno = alumnoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Alumno no encontrado"));

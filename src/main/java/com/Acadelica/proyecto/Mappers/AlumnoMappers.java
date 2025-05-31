@@ -75,12 +75,5 @@ public class AlumnoMappers {
     }
 
 
-    public static AlumnoDetalleDTO mapListId(Alumno alumno, AlumnoResponseDTO detalleDTO) {
-       AlumnoDetalleDTO detalle = new AlumnoDetalleDTO();
-        alumno.setNombre(detalleDTO.getNombre());//setNombre-establece el nombre del alumno , getNombre devuelve el nombre almacenado en el DTO
-        alumno.setCorreo(detalleDTO.getCorreo());
-        alumno.setClave(detalleDTO.getClave());
-        alumno.setFecha_Registro(LocalDateTime.now());
-        return detalle;
-    }
+
 }

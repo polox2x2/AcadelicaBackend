@@ -22,6 +22,7 @@ public class CursoMappers {
     public static CursoResponseDTO mapToResponseDTO (Curso curso){
         CursoResponseDTO responseDTO = new CursoResponseDTO();
             responseDTO.setNombre(curso.getNombreCurso());
+            responseDTO.setCateogoria(curso.getCateogoria());
             responseDTO.setDescripcion(curso.getDescripcion());
             responseDTO.setDuracion(curso.getDuracion());
 
@@ -45,4 +46,10 @@ public class CursoMappers {
                         Collectors.toList());
     }
 
+        public static void upDateCurso(Curso curso, CursoResponseDTO responseDTO){
+            curso.setNombreCurso(responseDTO.getNombre());
+            curso.setCateogoria(responseDTO.getCateogoria());
+            curso.setDuracion(responseDTO.getDuracion());
+            curso.setDescripcion(responseDTO.getDescripcion());
+        }
 }

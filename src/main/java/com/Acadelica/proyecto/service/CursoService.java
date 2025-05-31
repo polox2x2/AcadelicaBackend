@@ -27,24 +27,29 @@ public class CursoService {
                 () -> new RuntimeException("No se encontro el curso"));
     }
 
-
-    //Crear Curso;
+    //Crear Curso DTO
     public CursoResponseDTO crearCurso(CursoCreateDTO createDTO){
             Curso curso = CursoMappers.mapToCurso(createDTO);
             Curso create = cursoRepository.save(curso);
             return CursoMappers.mapToResponseDTO(create);
     }
-    //lista detallada de curso
+    //lista detallada de curso DTO
     public List<CursoDetalleDTO> cursoDetalleDTO(List<Curso>cursos){
         return CursoMappers.mapToList(cursos);
     }
-    //obtener por id
+    //obtener por id DTO
     public CursoDetalleDTO obtenerPorId (Long id){
         Curso curso = cursoRepository.findById(id).
                 orElseThrow(() -> new RuntimeException("No se encontro El curso"));
         return CursoMappers.mapToCursoDetalleDTO(curso);
     }
-
+    //Actualizar Curso DTO
+    public Curso upDateCurso(Long id, CursoResponseDTO responseDTO){
+        Curso curso = cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso no Encontrado"));
+        CursoMappers.upDateCurso(curso,responseDTO);
+        return cursoRepository.save(curso);
+    }
 
 
 }
