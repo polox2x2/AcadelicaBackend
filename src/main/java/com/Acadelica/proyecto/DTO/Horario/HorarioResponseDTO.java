@@ -18,4 +18,6 @@ public class HorarioResponseDTO {
 
     private String horaFin;
 
+    private HorarioDTO horarioDTO;
+
 }

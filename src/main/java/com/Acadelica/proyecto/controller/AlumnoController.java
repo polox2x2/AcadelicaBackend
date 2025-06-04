@@ -26,6 +26,7 @@ public Alumno crearAlumnos(@RequestBody  Alumno alumno){
         return alumnoService.crearAlumnos(alumno);
 }
 */
+    
 
     @GetMapping("/activos")
     public ResponseEntity<List<Alumno>> listarActivos() {

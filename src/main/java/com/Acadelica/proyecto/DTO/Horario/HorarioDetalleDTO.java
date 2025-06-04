@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HorarioDetalleDTO {
 
+    private Long id;
 
     private String dia;
 
