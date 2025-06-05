@@ -2,6 +2,7 @@ package com.Acadelica.proyecto.Mappers;
 
 
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoCreateDTO;
+import com.Acadelica.proyecto.DTO.Alumno.AlumnoDTO;
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoResponseDTO;
 import com.Acadelica.proyecto.Model.Alumno;
@@ -64,6 +65,25 @@ public class AlumnoMappers {
          */
 
     }
+    public static AlumnoDTO mapToAlumnoDTO(Alumno alumno){
+        AlumnoDTO dto = new AlumnoDTO();
+        dto.setNombre(alumno.getNombre());
+        dto.setApellido(alumno.getApellido());
+        return dto;
+    }
+    public static List<AlumnoDTO>ListAlumno(List<Alumno>alumnos){
+        return alumnos.stream().map(
+                AlumnoMappers::mapToAlumnoDTO
+        ).collect(Collectors.toList());
+    }
+
+
+    public static List<AlumnoResponseDTO>mapToList(List<Alumno>alumnos){
+        return alumnos.stream().map(
+                AlumnoMappers::mapToResponseDTO
+        ).collect(Collectors.toList());
+    }
+
 
     public static void upDateAlumnoName(Alumno alumno, AlumnoDetalleDTO detalleDTO){
         alumno.setNombre(detalleDTO.getNombre());

@@ -5,11 +5,11 @@ spring:
     name: Acadelica
   datasource:
     hikari:
-      maximum-pool-size: 3       # Límite máximo de conexiones
-      minimum-idle: 1            # Mínimo de conexiones en espera
-      idle-timeout: 10000        # Cierra las inactivas luego de 10 segundos
-      max-lifetime: 30000        # Cierra conexiones viejas después de 30 segundos
-      connection-timeout: 20000  # Espera 20 segundos para obtener una conexión
+      maximum-pool-size: 3       #Límite máximo de conexiones
+      minimum-idle: 1            #Mínimo de conexiones en espera
+      idle-timeout: 10000        #Cierra las inactivas luego de 10 segundos
+      max-lifetime: 30000        #Cierra conexiones viejas después de 30 segundos
+      connection-timeout: 20000  #Espera 20 segundos para obtener una conexión
 
     url: jdbc:mysql://b4uoq0rshdc6ogtoeymt-mysql.services.clever-cloud.com:3306/b4uoq0rshdc6ogtoeymt
     username: uuhwblprjqiupwbx

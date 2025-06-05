@@ -2,6 +2,7 @@ package com.Acadelica.proyecto.controller;
 
 
 import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
+import com.Acadelica.proyecto.DTO.Curso.CursoDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
 import com.Acadelica.proyecto.Mappers.CursoMappers;
@@ -43,6 +44,13 @@ public class CursoController {
         List<CursoResponseDTO>responseDTOS =CursoMappers.mapToListResponse(cursos);
         return ResponseEntity.ok(responseDTOS);
     }
+    @GetMapping("/cursos")
+    public ResponseEntity<List<CursoDTO>>obtenerCursoDTO(){
+        List<Curso>cursos = cursoService.buscarCurso();
+        List<CursoDTO>dto = CursoMappers.mapToListDTO(cursos);
+        return ResponseEntity.ok(dto);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CursoDetalleDTO>obtenetPorId (@PathVariable Long id){
         CursoDetalleDTO curso = cursoService.obtenerPorId(id);

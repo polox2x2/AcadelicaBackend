@@ -1,6 +1,7 @@
 package com.Acadelica.proyecto.service;
 
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoCreateDTO;
+import com.Acadelica.proyecto.DTO.Alumno.AlumnoDTO;
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Alumno.AlumnoResponseDTO;
 import com.Acadelica.proyecto.Mappers.AlumnoMappers;
@@ -20,9 +21,7 @@ public class AlumnoService {
         this.alumnoRepository = alumnoRepository;
     }
 
-    public Alumno crearAlumnos(Alumno alumno) {
-        return alumnoRepository.save(alumno);
-    }
+
     public List<Alumno> listarAlumnosActivos() {
         return alumnoRepository.findByEstadoTrue();
     }
@@ -41,15 +40,21 @@ public class AlumnoService {
     // Logica para obtener los datos Detallados utilizando DTO y MAPPERS
     public List<AlumnoDetalleDTO> obtenerDetalleAlumno(List<Alumno>alumnos){
         return AlumnoMappers.mapList(alumnos);
-
-
     }
+
     //obtener por ID
     public AlumnoDetalleDTO listarAlumnoPorId(Long id) {
         Alumno alumno = alumnoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Alumno no encontrado"));
         return AlumnoMappers.mapToDetalleDTO(alumno);
     }
+    public List<AlumnoResponseDTO>listaAlumno(List<Alumno>alumnos){
+        return AlumnoMappers.mapToList(alumnos);
+    }
+    public List<AlumnoDTO>Alumnos(List<Alumno>alumnos){
+        return AlumnoMappers.ListAlumno(alumnos);
+    }
+
 
     //Logica para actualizar los nombres, utilizando DTO Y MAPPERS
 

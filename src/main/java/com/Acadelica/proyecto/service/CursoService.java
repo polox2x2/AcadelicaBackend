@@ -1,6 +1,7 @@
 package com.Acadelica.proyecto.service;
 
 import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
+import com.Acadelica.proyecto.DTO.Curso.CursoDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
 import com.Acadelica.proyecto.Mappers.CursoMappers;
@@ -52,6 +53,12 @@ public class CursoService {
     }
     public List<CursoResponseDTO>cursoResponseDTO(List<Curso>cursos){
         return CursoMappers.mapToListResponse(cursos);
+    }
+
+    //obtener CursoDTO
+
+    public List<CursoDTO>cursoDTO(List<Curso>cursos){
+        return CursoMappers.mapToListDTO(cursos);
     }
 
 

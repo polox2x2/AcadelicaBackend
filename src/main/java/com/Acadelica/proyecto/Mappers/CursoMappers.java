@@ -2,6 +2,7 @@ package com.Acadelica.proyecto.Mappers;
 
 import com.Acadelica.proyecto.DTO.Categoria.CategoriaDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
+import com.Acadelica.proyecto.DTO.Curso.CursoDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
 import com.Acadelica.proyecto.Model.Categoria;
@@ -21,6 +22,14 @@ public class CursoMappers {
         curso.setCategoria(categoria);
         return curso;
     }
+    public static CursoDTO mapToCursoDTO(Curso curso){
+        CursoDTO dto = new CursoDTO();
+        dto.setNombre(curso.getNombreCurso());
+        dto.setDescripcion(curso.getDescripcion());
+        dto.setDuracion(curso.getDuracion());
+        return dto;
+    }
+
 
     public static CursoResponseDTO mapToResponseDTO (Curso curso){
         CursoResponseDTO responseDTO = new CursoResponseDTO();
@@ -47,6 +56,12 @@ public class CursoMappers {
         dto.setActividades(curso.getActividades());
         dto.setHorarios(curso.getHorarios());
         return dto;
+    }
+
+    public static List<CursoDTO>mapToListDTO(List<Curso>cursos){
+        return cursos.stream().map(
+                CursoMappers::mapToCursoDTO
+        ).collect(Collectors.toList());
     }
 
     public static List<CursoDetalleDTO> mapToList(List<Curso>cursos){
