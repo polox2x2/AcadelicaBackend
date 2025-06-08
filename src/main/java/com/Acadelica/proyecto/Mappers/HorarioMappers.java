@@ -30,7 +30,7 @@ public class HorarioMappers {
         dto.setHoraFin(horario.getHoraFin());
         Curso curso = horario.getCurso();
         if (curso != null) {
-            dto.setHorarioDTO(new HorarioDTO(curso.getNombreCurso()));
+            dto.setCurso(new HorarioDTO(curso.getNombreCurso()));
         }
         return dto;
     }
