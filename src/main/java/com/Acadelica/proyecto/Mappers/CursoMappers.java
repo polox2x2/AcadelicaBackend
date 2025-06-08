@@ -58,16 +58,16 @@ public class CursoMappers {
         return dto;
     }
 
-    public static List<CursoDTO>mapToListDTO(List<Curso>cursos){
-        return cursos.stream().map(
-                CursoMappers::mapToCursoDTO
-        ).collect(Collectors.toList());
-    }
 
     public static List<CursoDetalleDTO> mapToList(List<Curso>cursos){
         return cursos.stream().map(
                 CursoMappers::mapToCursoDetalleDTO).collect(
                             Collectors.toList());
+    }
+    public static List<CursoDTO>mapToListDTO(List<Curso>cursos){
+        return cursos.stream().map(
+                CursoMappers::mapToCursoDTO
+        ).collect(Collectors.toList());
     }
 
     public static List<CursoResponseDTO>mapToListResponse(List<Curso>cursos){
