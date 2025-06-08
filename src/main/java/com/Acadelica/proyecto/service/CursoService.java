@@ -32,7 +32,6 @@ public class CursoService {
 
     //Crear Curso DTO
     public CursoResponseDTO crearCurso(CursoCreateDTO createDTO){
-
         Categoria categoria = categoriaRepository.findById(createDTO.getIdCategoria()).orElseThrow(
                 () -> new RuntimeException("Categoria no encontrada"));
             Curso curso = CursoMappers.mapToCurso(createDTO ,categoria);

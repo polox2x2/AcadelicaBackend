@@ -15,7 +15,6 @@ public class CategoriaMappers {
     public static Categoria mapToCategoria(CategoriaCreateDTO dto){
         Categoria categoria = new Categoria();
         categoria.setNombre(dto.getNombre());
-        categoria.setFechaCreacion(LocalDateTime.now());
         return categoria;
     }
 

@@ -7,7 +7,6 @@ import com.Acadelica.proyecto.DTO.Profesor.ProfesorResponseDTO;
 import com.Acadelica.proyecto.Mappers.ProfesorMappers;
 import com.Acadelica.proyecto.Model.Profesor;
 import com.Acadelica.proyecto.repository.ProfesorRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.Port;

@@ -3,14 +3,11 @@ package com.Acadelica.proyecto.service;
 
 import com.Acadelica.proyecto.DTO.Categoria.CategoriaCreateDTO;
 import com.Acadelica.proyecto.DTO.Categoria.CategoriaResponseDTO;
-import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
 import com.Acadelica.proyecto.Mappers.CategoriaMappers;
-import com.Acadelica.proyecto.Mappers.CursoMappers;
 import com.Acadelica.proyecto.Model.Categoria;
-import com.Acadelica.proyecto.Model.Curso;
+
 import com.Acadelica.proyecto.repository.CategoriaRepository;
-import com.Acadelica.proyecto.repository.CursoRepository;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

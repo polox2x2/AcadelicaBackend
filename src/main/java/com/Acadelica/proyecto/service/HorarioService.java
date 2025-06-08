@@ -1,6 +1,5 @@
 package com.Acadelica.proyecto.service;
 
-import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
 import com.Acadelica.proyecto.DTO.Horario.HorarioCreateDTO;
 import com.Acadelica.proyecto.DTO.Horario.HorarioDetalleDTO;
 import com.Acadelica.proyecto.DTO.Horario.HorarioResponseDTO;
