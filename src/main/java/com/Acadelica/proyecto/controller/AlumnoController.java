@@ -1,12 +1,11 @@
 package com.Acadelica.proyecto.controller;
 
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoCreateDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDetalleDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoResponseDTO;
+import com.Acadelica.proyecto.DTO.Alumno.*;
 import com.Acadelica.proyecto.Mappers.AlumnoMappers;
 import com.Acadelica.proyecto.Model.Alumno;
 import com.Acadelica.proyecto.service.AlumnoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,7 +86,16 @@ public Alumno crearAlumnos(@RequestBody  Alumno alumno){
         alumnoService.deleteAlumno(id);
         return ResponseEntity.ok("Alumno Eliminado Correctamente");
     }
+    @PostMapping("/login")
+    public ResponseEntity<AlumnoLoginDTO> login (@RequestBody AlumnoLoginDTO loginDTO){
+            try{
+                AlumnoLoginDTO dto = alumnoService.Login(loginDTO.getCorreo(),loginDTO.getClave());
+                return ResponseEntity.ok(dto);
+            }catch (RuntimeException ex){
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            }
 
+    }
 }
 
 

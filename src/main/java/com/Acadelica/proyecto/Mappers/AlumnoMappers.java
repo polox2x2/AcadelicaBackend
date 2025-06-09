@@ -1,10 +1,7 @@
 package com.Acadelica.proyecto.Mappers;
 
 
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoCreateDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDetalleDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoResponseDTO;
+import com.Acadelica.proyecto.DTO.Alumno.*;
 import com.Acadelica.proyecto.Model.Alumno;
 
 import java.time.LocalDateTime;
@@ -50,6 +47,13 @@ public class AlumnoMappers {
         detalleDTO.setNombreCursos(alumno.getCursos());
         detalleDTO.setNombresActividades(alumno.getActividades());
         return detalleDTO ;
+    }
+    //Conversion de AlumnoLoginDTO a Alumno
+    public static AlumnoLoginDTO mapToLoginDTO(Alumno alumno){
+        AlumnoLoginDTO dto = new AlumnoLoginDTO();
+        dto.setCorreo(alumno.getCorreo());
+        dto.setClave(alumno.getClave());
+        return dto;
     }
 
 

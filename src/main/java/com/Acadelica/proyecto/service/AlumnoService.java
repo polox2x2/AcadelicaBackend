@@ -1,9 +1,6 @@
 package com.Acadelica.proyecto.service;
 
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoCreateDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoDetalleDTO;
-import com.Acadelica.proyecto.DTO.Alumno.AlumnoResponseDTO;
+import com.Acadelica.proyecto.DTO.Alumno.*;
 import com.Acadelica.proyecto.Mappers.AlumnoMappers;
 import com.Acadelica.proyecto.Model.Alumno;
 import com.Acadelica.proyecto.repository.AlumnoRepository;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlumnoService {
@@ -80,7 +78,20 @@ public class AlumnoService {
          alumnoRepository.delete(alumno);
     }
 
+    //Logica para el Login
 
+    public AlumnoLoginDTO Login(String correo , String clave){
+        Optional<Alumno> alumnoOptional= alumnoRepository.findByCorreo(correo);
+        if(alumnoOptional.isPresent()){
+            Alumno alumno = alumnoOptional.get();
+            if (alumno.getClave().equals(clave)){
+                return AlumnoMappers.mapToLoginDTO(alumno);
+            }
+
+        }
+            throw new RuntimeException("Correo o clave incorrecta");
+
+    }
 
 
 }
