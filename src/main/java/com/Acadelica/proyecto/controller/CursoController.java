@@ -35,7 +35,7 @@ public class CursoController {
     @GetMapping("/lista")
     public ResponseEntity<List<CursoDetalleDTO>>obtenerCursos(){
         List<Curso>cursos = cursoService.buscarCurso();
-        List<CursoDetalleDTO>detalleDTOS = CursoMappers.mapToList(cursos);
+        List<CursoDetalleDTO>detalleDTOS = cursoService.cursoDetalleDTO(cursos);
         return ResponseEntity.ok(detalleDTOS);
     }
     @GetMapping("/obtener")
@@ -56,14 +56,18 @@ public class CursoController {
         CursoDetalleDTO curso = cursoService.obtenerPorId(id);
         return ResponseEntity.ok(curso);
     }
-    @PutMapping("actualizar/curso/{id}")
+    /**@PutMapping("actualizar/curso/{id}")
     private ResponseEntity<?>actalizarCurso(@PathVariable Long id, @RequestBody CursoDetalleDTO dto){
         return ResponseEntity.ok(cursoService.upDateCurso(id,dto));
-    }
+    }**/
     @PutMapping("/eliminar/{id}")
     private ResponseEntity<?>eliminarCurso(@PathVariable Long id){
         cursoService.deleteCurso(id);
         return ResponseEntity.ok("Curso eliminado Correctamente ");
     }
-
+    @PutMapping("/actualizar/curso/{id}")
+    public ResponseEntity<CursoDTO> actualizarCurso(@PathVariable Long id,@RequestBody CursoDTO cursoDTO) {
+        CursoDTO cursoActualizado = cursoService.actualizarCurso(id, cursoDTO);
+        return ResponseEntity.ok(cursoActualizado);
+    }
 }

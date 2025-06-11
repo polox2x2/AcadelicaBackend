@@ -31,7 +31,7 @@ public class AlumnoService {
         //Logica para crear Alumno , utilizando DTO Y MAPPERS
 
     public  AlumnoResponseDTO crearAlumno(AlumnoCreateDTO dto){
-        Alumno alumno = AlumnoMappers.mapToAlumno(dto); // le damos los valores del constructormapToEntity al objeto alumno de la clase alumno.
+        Alumno alumno = AlumnoMappers.mapToAlumno(dto); // le damos los valores del constructormapAlumno al objeto alumno de la clase alumno.
         Alumno crear = alumnoRepository.save(alumno);
         return AlumnoMappers.mapToResponseDTO(crear);
     }

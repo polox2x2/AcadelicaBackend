@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class MensajeService {
+public class  MensajeService {
 
     private final MensajeRepository mensajeRepository;
     private final AlumnoRepository alumnoRepository;

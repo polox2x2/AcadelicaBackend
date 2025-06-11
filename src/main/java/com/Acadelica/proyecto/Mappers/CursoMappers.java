@@ -1,12 +1,13 @@
 package com.Acadelica.proyecto.Mappers;
 
 import com.Acadelica.proyecto.DTO.Categoria.CategoriaDTO;
-import com.Acadelica.proyecto.DTO.Curso.CursoCreateDTO;
-import com.Acadelica.proyecto.DTO.Curso.CursoDTO;
-import com.Acadelica.proyecto.DTO.Curso.CursoDetalleDTO;
-import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
+import com.Acadelica.proyecto.DTO.Curso.*;
+import com.Acadelica.proyecto.DTO.Horario.CursoHorarioDTO;
+import com.Acadelica.proyecto.DTO.Profesor.CursoProfesorDTO;
 import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.Model.Curso;
+import com.Acadelica.proyecto.Model.Horario;
+import com.Acadelica.proyecto.Model.Profesor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +28,16 @@ public class CursoMappers {
         dto.setNombre(curso.getNombreCurso());
         dto.setDescripcion(curso.getDescripcion());
         dto.setDuracion(curso.getDuracion());
+        Profesor profesor = curso.getProfesor();
+        if(profesor !=null){
+            dto.setProfesorID(new CursoProfesorDTO(profesor.getNombre()));
+        }
+        if (curso.getHorarios() != null && !curso.getHorarios().isEmpty()) {
+            List<CursoHorarioDTO> horariosDTO = curso.getHorarios().stream()
+                    .map(h -> new CursoHorarioDTO(h.getDia(), h.getHoraInicio(), h.getHoraFin()))
+                    .collect(Collectors.toList());
+            dto.setHorarioID(horariosDTO);
+        }
         return dto;
     }
 
@@ -83,5 +94,26 @@ public class CursoMappers {
             curso.setDescripcion(dto.getDescripcion());
         }
 
+    public static void updateCursoFromDTO(Curso curso, CursoDTO dto, Profesor profesor) {
+        curso.setNombreCurso(dto.getNombre());
+        curso.setDescripcion(dto.getDescripcion());
+        curso.setDuracion(dto.getDuracion());
+        curso.setProfesor(profesor);
+
+        // Limpiar horarios actuales antes de agregar los nuevos
+        curso.getHorarios().clear();
+
+        if (dto.getHorarioID() != null && !dto.getHorarioID().isEmpty()) {
+            List<Horario> nuevosHorarios = dto.getHorarioID().stream()
+                    .map(h -> {
+                        Horario horario = new Horario();
+                        horario.setDia(h.getHorario()); // O usa getHoraInicio() si lo tienes
+                        horario.setCurso(curso);
+                        return horario;
+                    }).collect(Collectors.toList());
+
+            curso.setHorarios(nuevosHorarios);
+        }
+    }
 
 }

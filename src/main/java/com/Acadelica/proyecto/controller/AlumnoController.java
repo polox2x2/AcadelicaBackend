@@ -3,6 +3,7 @@ package com.Acadelica.proyecto.controller;
 import com.Acadelica.proyecto.DTO.Alumno.*;
 import com.Acadelica.proyecto.Mappers.AlumnoMappers;
 import com.Acadelica.proyecto.Model.Alumno;
+import com.Acadelica.proyecto.Util.ErrorResponse;
 import com.Acadelica.proyecto.service.AlumnoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -59,10 +60,16 @@ public Alumno crearAlumnos(@RequestBody  Alumno alumno){
         return ResponseEntity.ok(alumnoDetalleDTOS);
     }
     @GetMapping("/alumnos")
-    public ResponseEntity<List<AlumnoDTO>>AlumnosList(){
-        List<Alumno>alumnos=alumnoService.listaAlumno();
-        List<AlumnoDTO>dto=alumnoService.Alumnos(alumnos);
-        return ResponseEntity.status(201).body(dto);
+    public ResponseEntity<?>AlumnosList(){
+        try{
+            List<Alumno>alumnos=alumnoService.listaAlumno();
+            List<AlumnoDTO>dto=alumnoService.Alumnos(alumnos);
+            return ResponseEntity.status(200).body(dto);
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Error al obtener la lista de alumnos"));
+        }
+
     }
 
 
@@ -84,15 +91,23 @@ public Alumno crearAlumnos(@RequestBody  Alumno alumno){
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> EliminarAlumno(@PathVariable Long id){
         alumnoService.deleteAlumno(id);
-        return ResponseEntity.ok("Alumno Eliminado Correctamente");
+        try{
+            return ResponseEntity.ok("Alumno Eliminado Correctamente");
+        }catch (RuntimeException error){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ErrorResponse("No se elimino de Manera correcta, Inténtalo de nuevo."));
+
+        }
+
     }
     @PostMapping("/login")
-    public ResponseEntity<AlumnoLoginDTO> login (@RequestBody AlumnoLoginDTO loginDTO){
+    public ResponseEntity<?> login (@RequestBody AlumnoLoginDTO loginDTO){
             try{
                 AlumnoLoginDTO dto = alumnoService.Login(loginDTO.getCorreo(),loginDTO.getClave());
                 return ResponseEntity.ok(dto);
             }catch (RuntimeException ex){
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(new ErrorResponse("Credenciales incorrectas. Inténtalo de nuevo."));
             }
 
     }

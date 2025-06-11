@@ -7,8 +7,10 @@ import com.Acadelica.proyecto.DTO.Curso.CursoResponseDTO;
 import com.Acadelica.proyecto.Mappers.CursoMappers;
 import com.Acadelica.proyecto.Model.Categoria;
 import com.Acadelica.proyecto.Model.Curso;
+import com.Acadelica.proyecto.Model.Profesor;
 import com.Acadelica.proyecto.repository.CategoriaRepository;
 import com.Acadelica.proyecto.repository.CursoRepository;
+import com.Acadelica.proyecto.repository.ProfesorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class CursoService {
 
     private final CursoRepository cursoRepository;
     private final CategoriaRepository categoriaRepository;
+    private final ProfesorRepository profesorRepository;
+
+
 
 
     public List<Curso> buscarCurso(){
@@ -72,6 +77,20 @@ public class CursoService {
         Curso curso = cursoRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("No se encontro el curso"));
         cursoRepository.delete(curso);
+    }
+
+    public CursoDTO actualizarCurso(Long idCurso, CursoDTO dto) {
+        Curso curso = cursoRepository.findById(idCurso)
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado"));
+        Profesor profesor = profesorRepository.findByNombre(dto.getProfesorID().getNombre());
+        if (profesor == null) {
+            throw new RuntimeException("Profesor no encontrado");
+        }
+        CursoMappers.updateCursoFromDTO(curso, dto, profesor);
+        Curso cursoActualizado = cursoRepository.save(curso);
+
+        return CursoMappers.mapToCursoDTO(cursoActualizado);
+
     }
 
 }
