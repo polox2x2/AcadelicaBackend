@@ -36,6 +36,8 @@ public class Alumno {
     private LocalDateTime fecha_Registro;
     @Column(name = "estado",nullable = false)
     private boolean estado= true ;
+    @Column(name = "ultima_conexion")
+    private LocalDateTime ultimaConexion;
     @ManyToMany
     @JoinTable(
             name = "alumno_curso",  // Nombre de la tabla de relación

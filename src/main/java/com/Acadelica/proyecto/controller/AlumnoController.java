@@ -109,7 +109,16 @@ public Alumno crearAlumnos(@RequestBody  Alumno alumno){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                         .body(new ErrorResponse("Credenciales incorrectas. Inténtalo de nuevo."));
             }
-
+    }
+    @GetMapping("/obtenerCorreo")
+    public ResponseEntity <?>obtenerAlumnoPorCorreo(@RequestParam String correo){
+        try{
+            AlumnoDetalleDTO detalleDTO = alumnoService.obtenerAlumnoPorCorreo(correo);
+            return ResponseEntity.ok(detalleDTO);
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse("Alumno no encontrado"));
+        }
     }
 }
 

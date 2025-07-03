@@ -4,15 +4,18 @@ import com.Acadelica.proyecto.DTO.Alumno.*;
 import com.Acadelica.proyecto.Mappers.AlumnoMappers;
 import com.Acadelica.proyecto.Model.Alumno;
 import com.Acadelica.proyecto.repository.AlumnoRepository;
+import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AlumnoService {
 
+    private static final Logger log = LoggerFactory.getLogger(AlumnoService.class);
     private  final AlumnoRepository alumnoRepository;
 
     public AlumnoService(AlumnoRepository alumnoRepository) {
@@ -92,6 +95,39 @@ public class AlumnoService {
             throw new RuntimeException("Correo o clave incorrecta");
 
     }
+    //Logica para buscar por correo
+    public AlumnoDetalleDTO obtenerAlumnoPorCorreo(String correo){
+    Alumno alumno = alumnoRepository.findByCorreo(correo).orElseThrow(
+            () -> new RuntimeException("Alumno no encontrado")
+    );
+    return AlumnoMappers.mapToDetalleDTO(alumno);
+    }
+
+    /*
+    * Buscar Alumnos por id y marcar como conectado
+    */
+        @Transactional
+    public Optional<Alumno>buscaryConectar(Long AlumnoId){
+
+            Optional<Alumno>alumnoOptional = alumnoRepository.findById(AlumnoId);
+
+        if(alumnoOptional.isPresent() && alumnoOptional.get().isEstado()){
+            Alumno alumno = alumnoOptional.get();
+            alumnoRepository.save(alumno);
+
+            log.info("Alumno conectado: {}-{}",alumno.getId(),alumno.getNombre());
+            return Optional.of(alumno);
+        }
+            log.warn("Intento de Conexion con ID invalido o inactivo : {}",AlumnoId);
+            return  Optional.empty();
+        }
+
+        //validar si esta activo o si existe
+
+        public boolean exiteYEstaActivo(Long alumnoId){
+        return alumnoRepository.existsByIdAndEstadoTrue(alumnoId);
+        }
+
 
 
 }
