@@ -19,7 +19,7 @@ public class ChatService {
 
     private final AlumnoService alumnoService;
     private final RestTemplate restTemplate;
-    private static final String N8N_WEBHOOK_URL ="http://localhost:5678/webhook/ia-agent";
+    private static final String N8N_WEBHOOK_URL ="https://polox2x2.app.n8n.cloud/webhook/ia-agent";
 
     public ChatService(AlumnoService alumnoService){
         this.alumnoService = alumnoService;
